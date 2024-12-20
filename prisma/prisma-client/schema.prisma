@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum TokenType {
+  ACCESS_TOKEN
+  REFRESH_TOKEN
+}
+
+model User {
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  id           Int        @id(map: "pk_user") @default(autoincrement()) @map("id")
+  username     String     @unique @map("username")
+  email        String     @unique @map("email")
+  passwordHash String     @map("password_hash")
+  status       UserStatus @default(ACTIVE)
+
+  // relation
+  token Token[]
+
+  @@map("user")
+}
+
+model Token {
+  createdAt DateTime @default(now()) @map("created_at")
+
+  id     BigInt @id(map: "pk_token") @default(autoincrement()) @map("id")
+  userId Int    @map("user_id")
+
+  token     String    @unique @map("token") @db.Text
+  tokenType TokenType @map("token_type")
+
+  expiresAt DateTime  @map("expired_at") @db.Timestamp()
+  revokedAt DateTime? @map("revoked_at") @db.Timestamp()
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("token")
+}
