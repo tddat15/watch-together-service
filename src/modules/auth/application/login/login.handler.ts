@@ -25,6 +25,8 @@ export class LoginHandler {
       },
     });
 
+    console.log('user', user);
+
     if (!user) {
       throw new BadRequestException('Your username or password is incorrect!');
     }

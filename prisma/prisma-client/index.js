@@ -150,7 +150,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Project\\watch-together\\prisma\\prisma-client",
+      "value": "D:\\Pet Project\\watch-together-service\\prisma\\prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -164,12 +164,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Project\\watch-together\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Pet Project\\watch-together-service\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "..",
   "clientVersion": "5.21.1",
@@ -178,6 +177,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
