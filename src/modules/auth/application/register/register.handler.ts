@@ -25,7 +25,7 @@ export class RegisterHandler {
       throw new BadRequestException('This username/email already used.');
     }
 
-    const user = await this.dbContext.user.create({
+    await this.dbContext.user.create({
       data: {
         username,
         email,
@@ -36,6 +36,6 @@ export class RegisterHandler {
       },
     });
 
-    return user;
+    return username;
   }
 }

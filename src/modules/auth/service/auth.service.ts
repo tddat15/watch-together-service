@@ -11,7 +11,7 @@ export class AuthService {
     return await bcrypt.hash(plainPassword, saltRounds);
   }
 
-  public async verifyPassword(plainPassword, hashedPassword) {
+  public async verifyPassword(plainPassword: string, hashedPassword: string) {
     return bcrypt.compare(plainPassword, hashedPassword);
   }
 

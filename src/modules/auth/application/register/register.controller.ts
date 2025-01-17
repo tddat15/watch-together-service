@@ -17,7 +17,7 @@ export class RegisterController {
   @ApiOperation({ description: 'Register an account.' })
   @UsePipes(new ValidationPipe({ whitelist: true }))
   @Post('/register')
-  async post(@Body() body: RegisterRequestBody): Promise<RegisterResponse> {
+  async post(@Body() body: RegisterRequestBody): Promise<string> {
     return await this.registerHandler.registerAccount(body);
   }
 }
